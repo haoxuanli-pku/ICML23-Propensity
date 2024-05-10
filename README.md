@@ -1,10 +1,10 @@
 ## Propensity Matters: Measuring and Enhancing Balancing for Recommendation
 
-This is the official pytorch implementation of "Propensity Matters: Measuring and Enhancing Balancing for Recommendation" (2023 ICML)
+This is the official PyTorch implementation of "Propensity Matters: Measuring and Enhancing Balancing for Recommendation" (2023 ICML)
 
 
 ## Overview
-In this paper, we discuss the potential problems of the previously widely adopted metrics for learned propensities, and propose balanced-mean-squared-error (BMSE) metric for debiased recommendations. Based on BMSE, we propose IPS-V2 and DR-V2 as the estimators of unbiased loss, and theoretically show that IPS-V2 and DR-V2 have greater propensity balancing and smaller variance without sacrificing additional bias. We further propose a co-training method for learning balanced representation and unbiased prediction.
+In this paper, we discuss the potential problems of the previously widely adopted metrics and propose a novel balanced-mean-squared-error (BMSE) metric for learning propensity. Based on the BMSE, we propose two estimators named IPS-V2 and DR-V2 to estimate the ideal loss and theoretically show that IPS-V2 and DR-V2 have greater propensity balancing ability and smaller variance without sacrificing additional bias. We further propose a co-training method to co-train the propensity model and the prediction model to achieve unbiased prediction.
 
 ## Run the code
 
@@ -54,7 +54,7 @@ The code runs well at python 3.8.18. The required packages are as follows:
 -   scikit-learn == 1.3.2
 
 ## Reference
-If you find this code useful for your work, please consider to cite our work as
+If you find this code useful for your work, please kindly consider to cite our work as
 ```
 @inproceedings{li2023propensity,
   title={Propensity matters: Measuring and enhancing balancing for recommendation},
