@@ -30,13 +30,13 @@ def para(args):
         args.base_model_args = {'emb_dim': 256, 'learning_rate': 5e-4, 'weight_decay': 0}
         args.imputation_model_args = {'emb_dim': 256, 'learning_rate': 5e-4, 'weight_decay': 0}
         args.propensity_model_args = {'emb_dim': 256, 'learning_rate': 1e-3, 'weight_decay': 5}
-        args.loss_args = {"alpha": 1, "beta": 10,"gamma": 1, "imputation": 1}
+        args.loss_args = {"alpha": 1, "beta": 10,"gamma": 1, "imputation": 5}
     elif args.dataset == 'yahooR3': 
         args.training_args = {'batch_size': 4096, 'epochs': 500, 'patience': 20, 'block_batch': [2000, 200]}
         args.base_model_args = {'emb_dim': 256, 'learning_rate': 1e-3, 'weight_decay': 1e-6}
         args.imputation_model_args = {'emb_dim': 256, 'learning_rate': 1e-3, 'weight_decay': 1e-6}
         args.propensity_model_args = {'emb_dim': 256, 'learning_rate': 1e-3, 'weight_decay': 1e-4}
-        args.loss_args = {"alpha": 1, "beta": 1, "gamma": 5e-2 , "imputation": 1}
+        args.loss_args = {"alpha": 1, "beta": 1, "gamma": 5e-2 , "imputation": 5}
     elif args.dataset == 'coat':
         args.training_args = {'batch_size': 512, 'epochs': 500, 'patience': 30, 'block_batch': [64, 64]}
         args.base_model_args = {'emb_dim': 256, 'learning_rate': 5e-4, 'weight_decay': 1e-5}
@@ -107,7 +107,8 @@ def train_and_eval(train_data, unif_train_data, val_data, test_data, device = 'c
                 r_tilde = imputation_model(users_all, items_all)
                 e_hat = none_criterion(r_hat, torch.sigmoid(r_tilde))
                 cost_e = none_criterion(e_hat, e_true)
-                loss_imp = torch.mean(torch.divide(cost_e, p_hat))
+                loss_imp = torch.mean(torch.multiply(sub_observed, torch.divide(cost_e, p_hat)))
+
                 ctr_loss = mean_criterion(p_hat, sub_observed)
                 ctcvr_loss = mean_criterion(torch.multiply(p_hat, r_hat), torch.multiply(sub_observed, sub_r))
                 cvr_loss_mnar = torch.mean(torch.add(e_hat, torch.divide(torch.multiply(sub_observed, e_true - e_hat), p_hat)))
