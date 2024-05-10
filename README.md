@@ -33,7 +33,7 @@ python DR_V2.py --dataset yahooR3
 ```
 
 
-- For product dataset
+- For Product dataset
 
 
 ```python
