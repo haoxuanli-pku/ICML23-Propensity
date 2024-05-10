@@ -8,7 +8,7 @@ In this paper, we discuss the potential problems of the previously widely adopte
 
 ## Run the code
 
-- For coat
+- For Coat dataset
 
 
 ```python
@@ -21,7 +21,7 @@ python DR_V2.py --dataset coat
 ```
 
 
-- For yahoo
+- For Yahoo! R3 dataset
 
 ```python
 python IPS_V2.py --dataset yahooR3
@@ -33,7 +33,7 @@ python DR_V2.py --dataset yahooR3
 ```
 
 
-- For product
+- For product dataset
 
 
 ```python
